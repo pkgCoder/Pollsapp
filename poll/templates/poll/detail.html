@@ -1,0 +1,17 @@
+<h1>Please vote </h1>
+
+{% if error_message %}
+<p><strong>Invalid Choice..Please choose again</strong></p>
+{% endif %}
+{% if questions %}
+<form action="{% url 'poll:vote' questions.id %}" method="post">
+  {% csrf_token %}
+{% for q in questions.choice_set.all %}
+<p><input type="radio" name="choice" value="{{ q.id }}" >{{q.choice_text}}</p>
+
+{% endfor %}
+<input type="submit">
+</form>
+{% else %}
+<p>No Choices  available</p>
+{% endif %}

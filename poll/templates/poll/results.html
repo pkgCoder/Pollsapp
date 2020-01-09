@@ -1,0 +1,10 @@
+<h1>Results of following choice </h1>
+
+{% if questions %}
+{% for q in questions.choice_set.all %}
+<li>{{q.choice_text}}--{{q.vote}} vote{{q.vote|pluralize}}
+{% endfor %}
+
+{% else %}
+<p>No results available</p>
+{% endif %}
